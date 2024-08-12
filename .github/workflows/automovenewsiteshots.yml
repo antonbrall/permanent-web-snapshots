@@ -14,7 +14,7 @@ jobs:
       run: |
         find ./ -maxdepth 1 ! -name 404.html ! -name index.html -type f -name "*.html" | while read fname; do
           filename=`basename "$fname"`
-          cp "$filename" "./snapshots/$filename"
+          mv "$filename" "snapshots/$filename"
         done
     - name: Commit files
       run: |
