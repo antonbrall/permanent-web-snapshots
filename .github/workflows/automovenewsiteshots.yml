@@ -12,9 +12,9 @@ jobs:
     - uses: actions/checkout@master
     - name: Copy the Readmes
       run: |
-        find ./ -maxdepth 1 -type f -name "*.html" | while read fname; do
+        find ./ -maxdepth 1 ! -name 404.html ! -name index.html -type f -name "*.html" | while read fname; do
           filename=`basename "$fname"`
-          mv "$filename" "./snapshots/"
+          mv "$filename" "./snapshots/$filename"
         done
     - name: Commit files
       run: |
