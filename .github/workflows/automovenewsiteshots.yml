@@ -2,14 +2,11 @@ name: docs
 on:
   push:
     branches: [ main ]
-    paths: ['**.html', './snapshots/**']
+    paths: ['**.html']
 
 jobs:
   docit:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
 
     steps:
     - uses: actions/checkout@master
@@ -26,6 +23,10 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
+        git add .
         git commit -m "Move files" -a
     - name: Push changes
-      uses: stefanzweifel/git-auto-commit-action@v5
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+  
