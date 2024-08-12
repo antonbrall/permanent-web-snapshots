@@ -8,9 +8,12 @@ jobs:
   docit:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
     - uses: actions/checkout@master
-    - name: Copy the Readmes
+    - name: Copy the new snapshots
       run: |
         find ./ -maxdepth 1 ! -name 404.html ! -name index.html -type f -name "*.html" | while read fname; do
           filename=`basename "$fname"`
@@ -25,6 +28,4 @@ jobs:
         git config --local user.name "GitHub Action"
         git commit -m "Move files" -a
     - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      uses: stefanzweifel/git-auto-commit-action@v5
