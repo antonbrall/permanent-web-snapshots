@@ -14,13 +14,13 @@ jobs:
       run: |
         find ./ -maxdepth 1 ! -name 404.html ! -name index.html -type f -name "*.html" | while read fname; do
           filename=`basename "$fname"`
-          mv "$filename" "./snapshots/$filename"
+          cp "$filename" "./snapshots/$filename"
         done
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git commit -m "Add changes" -a
+        git commit -m "Move files" -a
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
