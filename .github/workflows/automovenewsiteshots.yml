@@ -2,7 +2,7 @@ name: docs
 on:
   push:
     branches: [ main ]
-    paths: ['**.html']
+    paths: ['**.html', './snapshots/**']
 
 jobs:
   docit:
