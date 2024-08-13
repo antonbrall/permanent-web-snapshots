@@ -11,10 +11,12 @@ on:
 
 jobs:
   build:
-    if: contains(github.event.head_commit.message, '[build]')
+    # if: contains(github.event.head_commit.message, '[build]')
     name: Build with Netlify
     runs-on: ubuntu-18.04
     steps:
+    - name: "Print Commit Message"
+      run: echo "Commit message: ${{ github.event.head_commit.message }}"
     - name: "Trigger Netlify build"
       env: 
         token: ${{ secrets.NETLIFYTOKEN }}
