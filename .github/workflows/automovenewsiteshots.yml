@@ -1,11 +1,11 @@
-name: docs
+name: move files
 on:
   push:
     branches: [ main ]
     paths: ['**.html']
 
 jobs:
-  docit:
+  moveIt:
     runs-on: ubuntu-latest
 
     steps:
