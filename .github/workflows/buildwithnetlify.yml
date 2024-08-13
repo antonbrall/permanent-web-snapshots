@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+  workflow_run:
+    workflows: ["move files"]
+    types:
+      - completed
 
 jobs:
   build:
